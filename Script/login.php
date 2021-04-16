@@ -102,12 +102,12 @@ FAQ
 </li>
 <li class="nav-item">
 <a class="nav-link" href="contact">
-Contact Us
+Contact
 </a>
 </li>
 <li class="nav-item">
 <a class="nav-link" href="about">
-About Us
+About
 </a>
 </li>
 
@@ -146,12 +146,12 @@ FAQ
 <li>
 <li>
 <a href="contact">
-Contact Us
+Home
 </a>
 <li>
 <li>
 <a class="about" href="about">
-About Us
+About
 </a>
 <li>
 </ul>
@@ -230,7 +230,7 @@ Login
 <div class="row">
 <div class="col-lg-4 col-md-4 col-xs-6 col-mb-12">
 <div class="widget">
-<h3 class="block-title">About Us</h3>
+<h3 class="block-title">About</h3>
 <div class="textwidget">
 <p><?php echo $about_site; ?></p>
 </div>
@@ -249,8 +249,8 @@ Login
 <li><a href="./">- Home</a></li>
 <li><a href="listings">- Listings</a></li>
 <li><a href="faqs">- FAQ's</a></li>
-<li><a href="contact">- Contact Us</a></li>
-<li><a href="About">- About Us</a></li>
+<li><a href="contact">- Contact</a></li>
+<li><a href="About">- About</a></li>
 <li><a href="https://www.instagram.com/beatsbybwire/">- Developer</a></li>
     <?php
 	if ($logged == "1") {
@@ -293,7 +293,7 @@ print '<li><a href="login">- Login</a></li>
 <div class="row">
 <div class="col-md-12">
 <div class="site-info text-center">
-<p>Developed with <i class="lni-heart-filled"></i> by <a target="_blank" href="https://www.instagram.com/beatsbybwire/" rel="nofollow">carrodiowebsite@gmail.com</a></p>
+<p>Developed with <i class="lni-heart-filled"></i> by <a target="_blank" href="https://www.instagram.com/beatsbybwire/" rel="nofollow">Bwire Mashauri</a></p>
 </div>
 </div>
 </div>

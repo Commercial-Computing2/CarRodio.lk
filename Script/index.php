@@ -176,7 +176,7 @@ About Us
 <div class="form-group inputwithicon">
 <div class="select" >
 <select name="fuel" required>
-<option value="all">All Countries</option>
+<option value="all">Fuel Type</option>
 <?php
 try {
     $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);

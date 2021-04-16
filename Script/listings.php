@@ -253,7 +253,7 @@ style="margin-top: 15px; margin-bottom: 15px;"  class="form-control" name="keywo
 <div class="col-sm-3">
 <select style="height:44px; margin-top: 15px; margin-bottom: 15px;" class="form-control"  name="category" required>
 
-<option value="all">All Countries</option>
+<option value="all">Vehicle Type</option>
 <?php
 try {
     $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
@@ -292,7 +292,7 @@ try {
 
 <select class="form-control"  style="height:44px; margin-top: 15px; margin-bottom: 15px;"  name="fuel" required>
 
-<option value="all">Vehicle Type</option>
+<option value="all">Fuel Type</option>
 <?php
 try {
     $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);

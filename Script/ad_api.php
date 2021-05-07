@@ -366,14 +366,8 @@ unset($_SESSION['reply']);
 }
 
 ?>
-<form action="../app/send-ad-message.php" method="POST" autocomplete="OFF">
-<input type="hidden" name="mailto" value="<?php echo $email; ?>">
-<input type="hidden" name="ref" value="<?php echo $title; ?>">
-<input type="hidden" name="adid" value="<?php echo $ad_id; ?>">
-<input type="email" name="email" required class="form-control" placeholder="Your Email">
-<input type="text" name="phone" required class="form-control" placeholder="Your Phone">
-<textarea style="resize: none;" class="form-control" name="message" required >I'm interested in this property [<?php echo $title; ?>] and I'd like to know more details.</textarea>
-<button class="btn btn-common fullwidth mt-4">Send Message</button>
+<a href="../sendemail/index.php" class="btn btn-common fullwidth mt-4"></i> Message</a> 
+
 </form>
 </div>
 </div>

@@ -22,29 +22,41 @@ $searched = "1";
 $title = "Search Results";
 $cat = $_GET['category'];
 $fuel = $_GET['fuel'];
+$brand = $_GET['brand'];
+$ad_condition = $_GET['ad_condition'];
 $keyword = '%'.$_GET['keyword'].'%';
 
-if ($fuel == "all" && $cat == "all") {
+if ($fuel == "all" && $cat == "all" && $brand == "all" && $ad_condition = "all") {
 
 $query_1 = "SELECT * FROM tbl_ads LEFT JOIN tbl_users ON tbl_ads.author = tbl_users.user_id WHERE status = 'active' AND title LIKE :keyword ORDER BY enc_id DESC LIMIT $page1,18";
 
 $query_2 = "SELECT * FROM tbl_ads LEFT JOIN tbl_users ON tbl_ads.author = tbl_users.user_id WHERE status = 'active' AND title LIKE :keyword ORDER BY enc_id DESC";
 
-}else if ($fuel == "all" && $cat != "all") {
+}else if ($fuel == "all" && $cat != "all" && $brand == "all" && $ad_condition == "all") {
 
 $query_1 = "SELECT * FROM tbl_ads LEFT JOIN tbl_users ON tbl_ads.author = tbl_users.user_id WHERE status = 'active' AND category = '$cat' AND title LIKE :keyword ORDER BY enc_id DESC LIMIT $page1,18";
 
 $query_2 = "SELECT * FROM tbl_ads LEFT JOIN tbl_users ON tbl_ads.author = tbl_users.user_id WHERE status = 'active' AND category = '$cat' AND title LIKE :keyword ORDER BY enc_id DESC";
 
-}else if ($fuel != "all" && $cat != "all") {
+}else if ($fuel == "all" && $cat == "all" && $brand != "all" && $ad_condition == "all") {
+
+$query_1 = "SELECT * FROM tbl_ads LEFT JOIN tbl_users ON tbl_ads.author = tbl_users.user_id WHERE status = 'active' AND brand = '$brand' AND title LIKE :keyword ORDER BY enc_id DESC LIMIT $page1,18";
+	
+$query_2 = "SELECT * FROM tbl_ads LEFT JOIN tbl_users ON tbl_ads.author = tbl_users.user_id WHERE status = 'active' AND brand = '$brand' AND title LIKE :keyword ORDER BY enc_id DESC";
+	
+}else if ($fuel != "all" && $cat != "all" && $brand != "all" && $ad_condition != "all") {
+
+$query_1 = "SELECT * FROM tbl_ads LEFT JOIN tbl_users ON tbl_ads.author = tbl_users.user_id WHERE status = 'active' AND brand= '$brand' AND title LIKE :keyword ORDER BY enc_id DESC LIMIT $page1,18";
+		
+$query_2 = "SELECT * FROM tbl_ads LEFT JOIN tbl_users ON tbl_ads.author = tbl_users.user_id WHERE status = 'active' AND brand = '$brand' AND title LIKE :keyword ORDER BY enc_id DESC";
+		
+}else if ($fuel != "all" && $cat == "all" && $brand == "all" && $ad_condition == "all") {
 
 $query_1 = "SELECT * FROM tbl_ads LEFT JOIN tbl_users ON tbl_ads.author = tbl_users.user_id WHERE status = 'active' AND fuel = '$fuel' AND title LIKE :keyword ORDER BY enc_id DESC LIMIT $page1,18";
 
 $query_2 = "SELECT * FROM tbl_ads LEFT JOIN tbl_users ON tbl_ads.author = tbl_users.user_id WHERE status = 'active' AND fuel = '$fuel' AND title LIKE :keyword ORDER BY enc_id DESC";
 
 }
-
-
 
 }else{
 
@@ -324,11 +336,99 @@ try {
     
 </select>
 
+
+
+
+
+
 </div>
 <input type="hidden" value="✓" name="search">
 <div class="col-sm-2">
 <input type="submit" style="height:44px; margin-top: 15px; margin-bottom: 15px;  width:100%"  class="btn btn-common" value="Search">
 </div>
+
+<div class="col-sm-3">
+<select style="height:44px; margin-top: 15px; margin-bottom: 15px;" class="form-control"  name="brand" required>
+
+<option value="all">Brands</option>
+<?php
+try {
+    $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+	
+	$stmt = $conn->prepare("SELECT * FROM tbl_brands ORDER BY brand");
+	$stmt->execute();
+	$result = $stmt->fetchAll();
+
+    foreach($result as $row)
+    {
+		print '<option';
+
+		if ($searched == "1") {
+
+			if ($brand == $row['brand']) {
+				print ' selected ';			}
+		} 
+		print '
+
+		value="'.$row['brand'].'">'.$row['brand'].'</option>';
+	}
+					  
+	}catch(PDOException $e)
+    {
+    echo "Connection failed: " . $e->getMessage();
+    }
+
+    ?>
+
+</select>
+</div>
+
+
+
+
+
+
+
+<div class="col-sm-3">
+<select style="height:44px; margin-top: 15px; margin-bottom: 15px;" class="form-control"  name="ad_condition" required>
+
+<option value="all">Condition</option>
+<?php
+try {
+    $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+	
+	$stmt = $conn->prepare("SELECT * FROM tbl_condition ORDER BY ad_condition");
+	$stmt->execute();
+	$result = $stmt->fetchAll();
+
+    foreach($result as $row)
+    {
+		print '<option';
+
+		if ($searched == "1") {
+
+			if ($ad_condition == $row['ad_condition']) {
+				print ' selected ';			}
+		} 
+		print '
+
+		value="'.$row['ad_condition'].'">'.$row['ad_condition'].'</option>';
+	}
+					  
+	}catch(PDOException $e)
+    {
+    echo "Connection failed: " . $e->getMessage();
+    }
+
+    ?>
+
+</select>
+</div>
+
 </form>
 
 </div>
@@ -350,6 +450,7 @@ try {
 
 	if ($title == "Search Results") {
     $stmt->bindParam(':keyword', $keyword);
+
 
 	}
 	$stmt->execute();
@@ -458,7 +559,7 @@ try {
         for ($b=1;$b<=$total_pages;$b++) {
 
         	if ($searched == "1") {
-       print '<li class="page-item"><a class="page-link '; if ($b == $page) { print ' active '; } print '" href="listings?keyword='.$_GET['keyword'].'&category='.$_GET['category'].'&fuel='.$_GET['fuel'].'&search="✓"&page='.$b.'">'.$b.'</a></li>';
+       print '<li class="page-item"><a class="page-link '; if ($b == $page) { print ' active '; } print '" href="listings?keyword='.$_GET['keyword'].'&category='.$_GET['category'].'&fuel='.$_GET['fuel'].'&brand='.$_GET['brand'].'&ad_condition='.$_GET['ad_condition'].'&search="✓"&page='.$b.'">'.$b.'</a></li>';
 
         	}else{
 

@@ -241,13 +241,13 @@ About Us
 </div>
 <nav class="navdashboard">
 <ul>
+
 <li>
-<a  href="./">
-<i class="lni-user"></i>
-<span>My Account</span>
+<a href="seller">
+<i class="lni-layers"></i>
+<span>Account</span>
 </a>
 </li>
-
 <li>
 <a class="active" href="myads">
 <i class="lni-layers"></i>

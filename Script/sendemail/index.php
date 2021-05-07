@@ -20,11 +20,11 @@
 		<div class="col-md-6">
 			<form method="POST" action="send_email.php">
 				<div class="form-group">
-					<label>Buyer's Email:</label>
+					<label>Seller's Email:</label>
 					<input type="email" class="form-control" name="email" required="required"/>
 				</div>
 				<div class="form-group">
-					<label>Seller's Info:</label>
+					<label>Buyer's Email:</label>
 					<input type="text" class="form-control" name="subject" required="required"/>
 				</div>
 				<div class="form-group">

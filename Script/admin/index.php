@@ -82,6 +82,9 @@ if ($logged == "1") {
                             <a href="./"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
                         </li>
                         <li>
+                            <a href="generate"><i class="fa fa-dashboard fa-fw"></i> Generate Reports</a>
+                        </li>
+                        <li>
                             <a href="pub-ads"><i class="fa fa-edit fa-fw"></i> Published Ads</a>
                         </li>
                         <li>
